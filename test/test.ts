@@ -6,6 +6,7 @@ describe('Word Wrapper 테스트', () => {
     test('Word Wrapper 테스트', () => {
         expect(wrap('word word', 4)).toBe('word\nword');
         expect(wrap('a dog', 5)).toBe('a dog');
+        expect(wrap('a dog with a bone', 6)).toBe('a dog\nwidth a\nbone');
     })
 
     function wrap(s: string, width: number) {
