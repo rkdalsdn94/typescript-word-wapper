@@ -4,12 +4,22 @@ describe('Word Wrapper 테스트', () => {
     })
 
     test('Word Wrapper 테스트', () => {
-        expect(wrap('word word', 4)).toBe('word\nword');
-        expect(wrap('a dog', 5)).toBe('a dog');
-        expect(wrap('a dog with a bone', 6)).toBe('a dog\nwidth a\nbone');
+        assertWraps(null, 1, '');
+        assertWraps('', 1, '')
+        assertWraps('x', 1, 'x')
+        assertWraps('xx', 1, 'x\nx')
     })
 
-    function wrap(s: string, width: number) {
-        return s.length > width ? s.replace(' ', '\n') : s;
+    function assertWraps(s: string | null, width: number, expected: string) {
+        expect(wrap(s, width)).toBe(expected);
+    }
+
+    function wrap(s: string | null, width: number) {
+        if (s == null)
+            return ""
+        if (s.length <= width)
+            return s;
+        else
+            return s.substring(0, width) + '\n' + s.substring(width);
     }
 })
